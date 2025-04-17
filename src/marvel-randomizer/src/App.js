@@ -27,19 +27,20 @@ function App() {
   }
   console.log(players)
   return (
-    <React.Fragment>
+    <main className='App'>
       <PlayerContext.Provider value={players}>
-        <header className="">
+        <header>
           Marvel Rivals Randomizers
         </header>    
-        <div className="">
+        <div>
           <PlayerList players={players} onChange={handleChangePlayerName} onDelete={handleRemovePlayer} />
         </div>
+        <br/>
         <Add onClick={handleAddPlayer} />
 
       </PlayerContext.Provider>
 
-    </React.Fragment>
+    </main>
   );
 }
 

@@ -1,3 +1,4 @@
+import '../../App.css';
 import React from "react";
 
 function PlayerList({ players, onChange, onDelete}) {
@@ -9,7 +10,7 @@ function PlayerList({ players, onChange, onDelete}) {
               id: player.id,
               name: e.target.value
             })} />
-            <button onClick={e => onDelete({name: player.name, id: player.id})} >to Todo: Delete</button>
+            <button className="Delete" onClick={e => onDelete({name: player.name, id: player.id})} >Kick</button>
             <br/>
 
           </React.Fragment>
