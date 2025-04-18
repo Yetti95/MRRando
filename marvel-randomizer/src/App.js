@@ -26,6 +26,18 @@ function App() {
   function handleRemovePlayer(playerToRemove) {
     setPlayers(players.filter(player => player.id !== playerToRemove.id))
   }
+  function randomizeHeroes(){
+    function randomNumberGenerator(){
+      let min = 0
+      let max = players.length-1
+      return rand = min + Math.random() * (max - min)
+    }
+    let heros = []
+    setPlayers(players.map(player=>{
+      let prefered = heros.filter(hero => player.preferences.includes(Object.keys(hero)))
+      
+    }))
+  }
   return (
     <main className='App'>
       <PlayerContext.Provider value={players}>
@@ -38,7 +50,7 @@ function App() {
         <br/>
         <Add onClick={handleAddPlayer} />
       </PlayerContext.Provider>
-
+      <button className="Randomize" onClick={randomizeHeroes}>Randomize</button>
     </main>
   );
 }
