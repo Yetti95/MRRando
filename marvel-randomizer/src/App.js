@@ -6,9 +6,10 @@ import PlayerList from './components/players/PlayerList';
 export const PlayerContext = React.createContext(null);
 function App() {
   const initPlayers = [
-    {name: "Yetti", id: 0},
-    {name: "ChenneyWeennie", id: 1}
+    {name: "Yetti", id: 0, preferences: []},
+    {name: "ChenneyWeennie", id: 1, preferences: []}
   ]
+  initPlayers[0]
   const [players, setPlayers] = React.useState(initPlayers)
   
   function handleChangePlayerName(playerNameChange) {
@@ -25,7 +26,6 @@ function App() {
   function handleRemovePlayer(playerToRemove) {
     setPlayers(players.filter(player => player.id !== playerToRemove.id))
   }
-  console.log(players)
   return (
     <main className='App'>
       <PlayerContext.Provider value={players}>
@@ -37,7 +37,6 @@ function App() {
         </div>
         <br/>
         <Add onClick={handleAddPlayer} />
-
       </PlayerContext.Provider>
 
     </main>
