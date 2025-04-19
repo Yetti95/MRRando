@@ -2,46 +2,91 @@ import '../../App.css';
 import React from "react";
 import Hero from '../heros/Hero';
 
-function PlayerList({ players, onChange, onDelete}) {
-    
-    return (
-      <div className="Player.PlayerList">
-        {players.map(player => {
-          let hero
-          if(player.hero){
-            hero = <Hero hero={player.hero} />
-          }
-          return <React.Fragment>
-            <input value={player.name} key={"Player" + player.id} onChange={e => onChange({
-              id: player.id,
-              name: e.target.value,
-              // preferences: [...player.preferences]
-            })} />
-            <button className="Delete" onClick={e => onDelete({name: player.name, id: player.id})} >Kick</button>
-            {/* <input type="checkbox" value={player.preferences.tonk} onChange={e => onChange({
-              id: player.id,
-              name: e.target.value,
-              preferences: [...player.preferences, {tonk: !player.preferences.tonk}]
-            })}/>
-            <input type="checkbox" value={player.preference.dps} onChange={e => onChange({
-              id: player.id,
-              name: e.target.value,
-              preferences: [...player.preferences, {dps: !player.preferences.dps}]
-            })}/>
-            <input type="checkbox" value={player.preference.sup} onChange={e => onChange({
-              id: player.id,
-              name: e.target.value,
-              preferences: [...player.preferences, {sup: !player.preferences.sup}]
-            })}/> */}
-            {hero}
-            <br/>
-            
-          </React.Fragment>
+function PlayerList({ players, onChange, onDelete }) {
+  return (
+    <div className="Player.PlayerList">
+      {players.map(player => {
+        const hero = player.hero ? <Hero hero={player.hero} /> : null;
 
-        }
-        )}
-      </div>
-    );
-  }
-  
-  export default PlayerList;
+        return (
+          <React.Fragment key={player.id}>
+            <input
+              value={player.name}
+              onChange={e => onChange({
+                id: player.id,
+                name: e.target.value,
+                preferences: { ...player.preferences }
+              })}
+            />
+            <button
+              className="Delete"
+              onClick={() => onDelete({ name: player.name, id: player.id })}
+            >
+              Kick
+            </button>
+
+            {/* Role preference checkboxes */}
+            <label>
+              Tank
+              <input
+                type="checkbox"
+                checked={player.preferences.tonk}
+                onChange={() =>
+                  onChange({
+                    id: player.id,
+                    name: player.name,
+                    preferences: {
+                      ...player.preferences,
+                      tonk: !player.preferences.tonk
+                    }
+                  })
+                }
+              />
+            </label>
+
+            <label>
+              DPS
+              <input
+                type="checkbox"
+                checked={player.preferences.dps}
+                onChange={() =>
+                  onChange({
+                    id: player.id,
+                    name: player.name,
+                    preferences: {
+                      ...player.preferences,
+                      dps: !player.preferences.dps
+                    }
+                  })
+                }
+              />
+            </label>
+
+            <label>
+              Support
+              <input
+                type="checkbox"
+                checked={player.preferences.sup}
+                onChange={() =>
+                  onChange({
+                    id: player.id,
+                    name: player.name,
+                    preferences: {
+                      ...player.preferences,
+                      sup: !player.preferences.sup
+                    }
+                  })
+                }
+              />
+            </label>
+
+            {hero}
+            <br />
+          </React.Fragment>
+        );
+      })}
+    </div>
+  );
+}
+
+export default PlayerList;

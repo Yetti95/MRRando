@@ -4,12 +4,20 @@ import Add from './components/players/Add';
 import PlayerList from './components/players/PlayerList';
 import { HEROES, ROLES } from './Heroes';
 
+const roleKeyMap = {
+  Strategist: "sup",
+  Duelist: "dps",
+  Vanguard: "tonk"
+};
+
+
 export const PlayerContext = React.createContext(null);
 function App() {
   const initPlayers = [
-    {name: "Yetti", id: 0, preferences: []},
-    {name: "ChenneyWeennie", id: 1, preferences: []}
+    { name: "Yetti", id: 0, preferences: { tonk: false, dps: false, sup: false } },
+    { name: "ChenneyWeennie", id: 1, preferences: { tonk: false, dps: false, sup: false } }
   ]
+  
   const [players, setPlayers] = React.useState(initPlayers)
   const [heroes, setHeroes] = React.useState(HEROES)
   function handleChangePlayerName(playerNameChange) {
@@ -29,19 +37,36 @@ function App() {
   function randomizeHeroes() {
     let remainingHeroes = [...heroes];
   
+    const roleKeyMap = {
+      Strategist: "sup",
+      Duelist: "dps",
+      Vanguard: "tonk"
+    };
+  
     const updatedPlayers = players.map(player => {
-      // Optional: apply preferences filter
-      const filteredHeroes = []
-      // const filteredHeroes = remainingHeroes.filter(hero => {
-      //   return !player.preferences.includes(hero.name); // or hero.role
-      // });
+      const prefs = player.preferences || {};
+      const hasAnyPref = Object.values(prefs).some(Boolean);
+      console.log("Player:", player.name);
+      console.log("Preferences:", prefs);
+      console.log("Has any preference?", hasAnyPref);
+  
+      const filteredHeroes = hasAnyPref
+        ? remainingHeroes.filter(hero => {
+            const prefKey = roleKeyMap[hero.roles];
+            const allowed = prefs[prefKey];
+            console.log(`Checking hero ${hero.name} (${hero.roles}) → ${prefKey}: ${allowed}`);
+            return allowed;
+          })
+        : remainingHeroes;
   
       const heroPool = filteredHeroes.length > 0 ? filteredHeroes : remainingHeroes;
   
       const randomIndex = Math.floor(Math.random() * heroPool.length);
       const selectedHero = heroPool[randomIndex];
   
-      // Remove selected hero from remainingHeroes
+      console.log("Selected hero:", selectedHero.name);
+      console.log("----");
+  
       remainingHeroes = remainingHeroes.filter(hero => hero.name !== selectedHero.name);
   
       return {
@@ -53,6 +78,9 @@ function App() {
     setPlayers(updatedPlayers);
     setHeroes(remainingHeroes);
   }
+  
+  
+  
   
   return (
     <main className='App'>
