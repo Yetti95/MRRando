@@ -3,17 +3,17 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import {BrowserRouter as Router, Route, Link} from 'react-router-dom'
+// import {BrowserRouter as Router, Route, Link} from 'react-router-dom'
 import HeroSelect from './main/HeroSelect';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <Router>
+  // <Router>
     <React.StrictMode>
       <App />
     </React.StrictMode>
 
-    <Route path='/start' Component={HeroSelect}></Route>
-  </Router>
+  //   <Route path='/start' Component={HeroSelect}></Route>
+  // </Router>
 );
 
 // If you want to start measuring performance in your app, pass a function

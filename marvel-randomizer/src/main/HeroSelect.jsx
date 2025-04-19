@@ -14,9 +14,7 @@ export default function HeroSelect({players, selectHero}){
         <div>
             <PlayerList players={players} />
             <br />
-            {heroes.map(hero => {
-                <Hero hero={hero} selectHero={handleSelectHeroe} />
-            })}
+            
         </div>
     )
 }

@@ -1,7 +1,8 @@
 import './App.css';
 import React from 'react';
- import Add from './components/players/Add';
+import Add from './components/players/Add';
 import PlayerList from './components/players/PlayerList';
+import { HEROES, ROLES } from './Heroes';
 
 export const PlayerContext = React.createContext(null);
 function App() {
@@ -9,9 +10,8 @@ function App() {
     {name: "Yetti", id: 0, preferences: []},
     {name: "ChenneyWeennie", id: 1, preferences: []}
   ]
-  initPlayers[0]
   const [players, setPlayers] = React.useState(initPlayers)
-  
+  const [heroes, setHeroes] = React.useState(HEROES)
   function handleChangePlayerName(playerNameChange) {
     setPlayers(players.map(player => {
       if(player.id === playerNameChange.id){
@@ -26,18 +26,34 @@ function App() {
   function handleRemovePlayer(playerToRemove) {
     setPlayers(players.filter(player => player.id !== playerToRemove.id))
   }
-  function randomizeHeroes(){
-    function randomNumberGenerator(){
-      let min = 0
-      let max = players.length-1
-      return rand = min + Math.random() * (max - min)
-    }
-    let heros = []
-    setPlayers(players.map(player=>{
-      let prefered = heros.filter(hero => player.preferences.includes(Object.keys(hero)))
-      
-    }))
+  function randomizeHeroes() {
+    let remainingHeroes = [...heroes];
+  
+    const updatedPlayers = players.map(player => {
+      // Optional: apply preferences filter
+      const filteredHeroes = []
+      // const filteredHeroes = remainingHeroes.filter(hero => {
+      //   return !player.preferences.includes(hero.name); // or hero.role
+      // });
+  
+      const heroPool = filteredHeroes.length > 0 ? filteredHeroes : remainingHeroes;
+  
+      const randomIndex = Math.floor(Math.random() * heroPool.length);
+      const selectedHero = heroPool[randomIndex];
+  
+      // Remove selected hero from remainingHeroes
+      remainingHeroes = remainingHeroes.filter(hero => hero.name !== selectedHero.name);
+  
+      return {
+        ...player,
+        hero: selectedHero
+      };
+    });
+  
+    setPlayers(updatedPlayers);
+    setHeroes(remainingHeroes);
   }
+  
   return (
     <main className='App'>
       <PlayerContext.Provider value={players}>

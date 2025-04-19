@@ -1,3 +1,4 @@
+export const ROLES = {sup: "Strategist", dps: "Duelist", tonk: "Vanguard"}
 export const HEROES = [
     {
         name: "Adam Warlock",
@@ -13,7 +14,7 @@ export const HEROES = [
     },
     {
         name: "Bruce Banner",
-        roles: ROELS.tonk,
+        roles: ROLES.tonk,
     },
     {
         name: "Captian America",
@@ -152,5 +153,3 @@ export const HEROES = [
         roles: ROLES.dps,
     }
 ]
-
-export const ROLES = {sup: "Strategist", dps: "Duelist", tonk: "Vanguard"}

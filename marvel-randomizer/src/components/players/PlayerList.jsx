@@ -1,18 +1,24 @@
 import '../../App.css';
 import React from "react";
+import Hero from '../heros/Hero';
 
 function PlayerList({ players, onChange, onDelete}) {
+    
     return (
       <div className="Player.PlayerList">
-        {players.map(player => (
-          <React.Fragment>
+        {players.map(player => {
+          let hero
+          if(player.hero){
+            hero = <Hero hero={player.hero} />
+          }
+          return <React.Fragment>
             <input value={player.name} key={"Player" + player.id} onChange={e => onChange({
               id: player.id,
               name: e.target.value,
-              preferences: [...player.preferences]
+              // preferences: [...player.preferences]
             })} />
             <button className="Delete" onClick={e => onDelete({name: player.name, id: player.id})} >Kick</button>
-            <input type="checkbox" value={player.preferences.tonk} onChange={e => onChange({
+            {/* <input type="checkbox" value={player.preferences.tonk} onChange={e => onChange({
               id: player.id,
               name: e.target.value,
               preferences: [...player.preferences, {tonk: !player.preferences.tonk}]
@@ -26,11 +32,14 @@ function PlayerList({ players, onChange, onDelete}) {
               id: player.id,
               name: e.target.value,
               preferences: [...player.preferences, {sup: !player.preferences.sup}]
-            })}/>
+            })}/> */}
+            {hero}
             <br/>
             
           </React.Fragment>
-        ))}
+
+        }
+        )}
       </div>
     );
   }
