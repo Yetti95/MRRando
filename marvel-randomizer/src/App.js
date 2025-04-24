@@ -29,10 +29,21 @@ function App() {
     }))
   }
   function handleAddPlayer() {
-    setPlayers([...players, {name: "", id: players.length}])
+    setPlayers([
+      ...players,
+      {
+        name: "",
+        id: players.length,
+        preferences: { tonk: false, dps: false, sup: false }
+      }
+    ]);
   }
+  
   function handleRemovePlayer(playerToRemove) {
     setPlayers(players.filter(player => player.id !== playerToRemove.id))
+  }
+  function resetHeroes(){
+    setHeroes(HEROES)
   }
   function randomizeHeroes() {
     let remainingHeroes = [...heroes];
@@ -95,6 +106,9 @@ function App() {
         <Add onClick={handleAddPlayer} />
       </PlayerContext.Provider>
       <button className="Randomize" onClick={randomizeHeroes}>Randomize</button>
+      <br />
+      <br/>
+      <button className="reset" onClick={resetHeroes}>Reset</button>
     </main>
   );
 }
