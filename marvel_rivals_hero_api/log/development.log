@@ -1,0 +1,701 @@
+  [1m[35mSQL (0.1ms)[0m  [1m[35mSET search_path TO public /*application='MarvelRivalsHeroApi'*/[0m
+  [1m[35m (82.8ms)[0m  [1m[35mCREATE DATABASE "myapp_development" ENCODING = 'unicode' /*application='MarvelRivalsHeroApi'*/[0m
+  [1m[35m (1.7ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY) /*application='MarvelRivalsHeroApi'*/[0m
+  [1m[35m (0.6ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL) /*application='MarvelRivalsHeroApi'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT pg_try_advisory_lock(7864839756650184315) /*application='MarvelRivalsHeroApi'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='MarvelRivalsHeroApi'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='MarvelRivalsHeroApi'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.2ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'development', '2025-04-24 02:59:07.642289', '2025-04-24 02:59:07.642291') RETURNING "key" /*application='MarvelRivalsHeroApi'*/[0m
+Migrating to CreateRoles (20250424025607)
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN /*application='MarvelRivalsHeroApi'*/[0m
+  [1m[35m (2.6ms)[0m  [1m[35mCREATE TABLE "roles" ("id" bigserial primary key, "name" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL) /*application='MarvelRivalsHeroApi'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20250424025607') RETURNING "version" /*application='MarvelRivalsHeroApi'*/[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT /*application='MarvelRivalsHeroApi'*/[0m
+Migrating to CreateHeros (20250424025619)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN /*application='MarvelRivalsHeroApi'*/[0m
+  [1m[35m (4.6ms)[0m  [1m[35mCREATE TABLE "heros" ("id" bigserial primary key, "name" character varying, "role_id" bigint NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_db77e3d99b"
+FOREIGN KEY ("role_id")
+  REFERENCES "roles" ("id")
+) /*application='MarvelRivalsHeroApi'*/[0m
+  [1m[35m (1.1ms)[0m  [1m[35mCREATE INDEX "index_heros_on_role_id" ON "heros" ("role_id") /*application='MarvelRivalsHeroApi'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20250424025619') RETURNING "version" /*application='MarvelRivalsHeroApi'*/[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT /*application='MarvelRivalsHeroApi'*/[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(7864839756650184315) /*application='MarvelRivalsHeroApi'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='MarvelRivalsHeroApi'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='MarvelRivalsHeroApi'*/[0m
+  [1m[36mHero Load (0.6ms)[0m  [1m[34mSELECT "heros".* FROM "heros" /*application='MarvelRivalsHeroApi'*/[0m
+  [1m[36mRole Load (0.4ms)[0m  [1m[34mSELECT "roles".* FROM "roles" /*application='MarvelRivalsHeroApi'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN /*application='MarvelRivalsHeroApi'*/[0m
+  [1m[36mRole Create (1.2ms)[0m  [1m[32mINSERT INTO "roles" ("name", "created_at", "updated_at") VALUES ('Strategist', '2025-04-24 03:00:00.003436', '2025-04-24 03:00:00.003436') RETURNING "id" /*application='MarvelRivalsHeroApi'*/[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT /*application='MarvelRivalsHeroApi'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN /*application='MarvelRivalsHeroApi'*/[0m
+  [1m[36mRole Create (0.8ms)[0m  [1m[32mINSERT INTO "roles" ("name", "created_at", "updated_at") VALUES ('Duelist', '2025-04-24 03:00:00.008775', '2025-04-24 03:00:00.008775') RETURNING "id" /*application='MarvelRivalsHeroApi'*/[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT /*application='MarvelRivalsHeroApi'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN /*application='MarvelRivalsHeroApi'*/[0m
+  [1m[36mRole Create (1.4ms)[0m  [1m[32mINSERT INTO "roles" ("name", "created_at", "updated_at") VALUES ('Vanguard', '2025-04-24 03:00:00.014271', '2025-04-24 03:00:00.014271') RETURNING "id" /*application='MarvelRivalsHeroApi'*/[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT /*application='MarvelRivalsHeroApi'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN /*application='MarvelRivalsHeroApi'*/[0m
+  [1m[36mHero Create (2.9ms)[0m  [1m[32mINSERT INTO "heros" ("name", "role_id", "created_at", "updated_at") VALUES ('Adam Warlock', 1, '2025-04-24 03:00:00.032649', '2025-04-24 03:00:00.032649') RETURNING "id" /*application='MarvelRivalsHeroApi'*/[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT /*application='MarvelRivalsHeroApi'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN /*application='MarvelRivalsHeroApi'*/[0m
+  [1m[36mHero Create (0.6ms)[0m  [1m[32mINSERT INTO "heros" ("name", "role_id", "created_at", "updated_at") VALUES ('Black Panther', 2, '2025-04-24 03:00:00.042637', '2025-04-24 03:00:00.042637') RETURNING "id" /*application='MarvelRivalsHeroApi'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT /*application='MarvelRivalsHeroApi'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN /*application='MarvelRivalsHeroApi'*/[0m
+  [1m[36mHero Create (0.4ms)[0m  [1m[32mINSERT INTO "heros" ("name", "role_id", "created_at", "updated_at") VALUES ('Black Widow', 2, '2025-04-24 03:00:00.044934', '2025-04-24 03:00:00.044934') RETURNING "id" /*application='MarvelRivalsHeroApi'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT /*application='MarvelRivalsHeroApi'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN /*application='MarvelRivalsHeroApi'*/[0m
+  [1m[36mHero Create (0.5ms)[0m  [1m[32mINSERT INTO "heros" ("name", "role_id", "created_at", "updated_at") VALUES ('Bruce Banner', 3, '2025-04-24 03:00:00.046701', '2025-04-24 03:00:00.046701') RETURNING "id" /*application='MarvelRivalsHeroApi'*/[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT /*application='MarvelRivalsHeroApi'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN /*application='MarvelRivalsHeroApi'*/[0m
+  [1m[36mHero Create (0.5ms)[0m  [1m[32mINSERT INTO "heros" ("name", "role_id", "created_at", "updated_at") VALUES ('Captian America', 3, '2025-04-24 03:00:00.048622', '2025-04-24 03:00:00.048622') RETURNING "id" /*application='MarvelRivalsHeroApi'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT /*application='MarvelRivalsHeroApi'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN /*application='MarvelRivalsHeroApi'*/[0m
+  [1m[36mHero Create (0.5ms)[0m  [1m[32mINSERT INTO "heros" ("name", "role_id", "created_at", "updated_at") VALUES ('CLoack & Dagger', 1, '2025-04-24 03:00:00.050594', '2025-04-24 03:00:00.050594') RETURNING "id" /*application='MarvelRivalsHeroApi'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT /*application='MarvelRivalsHeroApi'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN /*application='MarvelRivalsHeroApi'*/[0m
+  [1m[36mHero Create (0.8ms)[0m  [1m[32mINSERT INTO "heros" ("name", "role_id", "created_at", "updated_at") VALUES ('Doctor Stranger', 3, '2025-04-24 03:00:00.053216', '2025-04-24 03:00:00.053216') RETURNING "id" /*application='MarvelRivalsHeroApi'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT /*application='MarvelRivalsHeroApi'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN /*application='MarvelRivalsHeroApi'*/[0m
+  [1m[36mHero Create (0.4ms)[0m  [1m[32mINSERT INTO "heros" ("name", "role_id", "created_at", "updated_at") VALUES ('Emma Frost', 3, '2025-04-24 03:00:00.054775', '2025-04-24 03:00:00.054775') RETURNING "id" /*application='MarvelRivalsHeroApi'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT /*application='MarvelRivalsHeroApi'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN /*application='MarvelRivalsHeroApi'*/[0m
+  [1m[36mHero Create (0.4ms)[0m  [1m[32mINSERT INTO "heros" ("name", "role_id", "created_at", "updated_at") VALUES ('Groot', 3, '2025-04-24 03:00:00.056021', '2025-04-24 03:00:00.056021') RETURNING "id" /*application='MarvelRivalsHeroApi'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT /*application='MarvelRivalsHeroApi'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN /*application='MarvelRivalsHeroApi'*/[0m
+  [1m[36mHero Create (0.4ms)[0m  [1m[32mINSERT INTO "heros" ("name", "role_id", "created_at", "updated_at") VALUES ('Hawkeye', 2, '2025-04-24 03:00:00.057134', '2025-04-24 03:00:00.057134') RETURNING "id" /*application='MarvelRivalsHeroApi'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT /*application='MarvelRivalsHeroApi'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN /*application='MarvelRivalsHeroApi'*/[0m
+  [1m[36mHero Create (0.5ms)[0m  [1m[32mINSERT INTO "heros" ("name", "role_id", "created_at", "updated_at") VALUES ('Hela', 2, '2025-04-24 03:00:00.058204', '2025-04-24 03:00:00.058204') RETURNING "id" /*application='MarvelRivalsHeroApi'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT /*application='MarvelRivalsHeroApi'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN /*application='MarvelRivalsHeroApi'*/[0m
+  [1m[36mHero Create (0.5ms)[0m  [1m[32mINSERT INTO "heros" ("name", "role_id", "created_at", "updated_at") VALUES ('Human Torch', 2, '2025-04-24 03:00:00.059305', '2025-04-24 03:00:00.059305') RETURNING "id" /*application='MarvelRivalsHeroApi'*/[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT /*application='MarvelRivalsHeroApi'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN /*application='MarvelRivalsHeroApi'*/[0m
+  [1m[36mHero Create (0.4ms)[0m  [1m[32mINSERT INTO "heros" ("name", "role_id", "created_at", "updated_at") VALUES ('Invisible Woman', 1, '2025-04-24 03:00:00.062037', '2025-04-24 03:00:00.062037') RETURNING "id" /*application='MarvelRivalsHeroApi'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT /*application='MarvelRivalsHeroApi'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN /*application='MarvelRivalsHeroApi'*/[0m
+  [1m[36mHero Create (0.4ms)[0m  [1m[32mINSERT INTO "heros" ("name", "role_id", "created_at", "updated_at") VALUES ('Iron Fist', 2, '2025-04-24 03:00:00.064392', '2025-04-24 03:00:00.064392') RETURNING "id" /*application='MarvelRivalsHeroApi'*/[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT /*application='MarvelRivalsHeroApi'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN /*application='MarvelRivalsHeroApi'*/[0m
+  [1m[36mHero Create (0.4ms)[0m  [1m[32mINSERT INTO "heros" ("name", "role_id", "created_at", "updated_at") VALUES ('Iron Man', 2, '2025-04-24 03:00:00.066154', '2025-04-24 03:00:00.066154') RETURNING "id" /*application='MarvelRivalsHeroApi'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT /*application='MarvelRivalsHeroApi'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN /*application='MarvelRivalsHeroApi'*/[0m
+  [1m[36mHero Create (0.4ms)[0m  [1m[32mINSERT INTO "heros" ("name", "role_id", "created_at", "updated_at") VALUES ('Jeff the Land Shark', 1, '2025-04-24 03:00:00.067415', '2025-04-24 03:00:00.067415') RETURNING "id" /*application='MarvelRivalsHeroApi'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT /*application='MarvelRivalsHeroApi'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN /*application='MarvelRivalsHeroApi'*/[0m
+  [1m[36mHero Create (0.4ms)[0m  [1m[32mINSERT INTO "heros" ("name", "role_id", "created_at", "updated_at") VALUES ('Loki', 1, '2025-04-24 03:00:00.068777', '2025-04-24 03:00:00.068777') RETURNING "id" /*application='MarvelRivalsHeroApi'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT /*application='MarvelRivalsHeroApi'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN /*application='MarvelRivalsHeroApi'*/[0m
+  [1m[36mHero Create (0.5ms)[0m  [1m[32mINSERT INTO "heros" ("name", "role_id", "created_at", "updated_at") VALUES ('Luna Snow', 1, '2025-04-24 03:00:00.070507', '2025-04-24 03:00:00.070507') RETURNING "id" /*application='MarvelRivalsHeroApi'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT /*application='MarvelRivalsHeroApi'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN /*application='MarvelRivalsHeroApi'*/[0m
+  [1m[36mHero Create (0.5ms)[0m  [1m[32mINSERT INTO "heros" ("name", "role_id", "created_at", "updated_at") VALUES ('Magik', 2, '2025-04-24 03:00:00.071564', '2025-04-24 03:00:00.071564') RETURNING "id" /*application='MarvelRivalsHeroApi'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT /*application='MarvelRivalsHeroApi'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN /*application='MarvelRivalsHeroApi'*/[0m
+  [1m[36mHero Create (0.4ms)[0m  [1m[32mINSERT INTO "heros" ("name", "role_id", "created_at", "updated_at") VALUES ('Magneto', 3, '2025-04-24 03:00:00.072644', '2025-04-24 03:00:00.072644') RETURNING "id" /*application='MarvelRivalsHeroApi'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT /*application='MarvelRivalsHeroApi'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN /*application='MarvelRivalsHeroApi'*/[0m
+  [1m[36mHero Create (0.4ms)[0m  [1m[32mINSERT INTO "heros" ("name", "role_id", "created_at", "updated_at") VALUES ('Mantis', 1, '2025-04-24 03:00:00.073643', '2025-04-24 03:00:00.073643') RETURNING "id" /*application='MarvelRivalsHeroApi'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT /*application='MarvelRivalsHeroApi'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN /*application='MarvelRivalsHeroApi'*/[0m
+  [1m[36mHero Create (0.4ms)[0m  [1m[32mINSERT INTO "heros" ("name", "role_id", "created_at", "updated_at") VALUES ('Mister Fantastic', 2, '2025-04-24 03:00:00.075012', '2025-04-24 03:00:00.075012') RETURNING "id" /*application='MarvelRivalsHeroApi'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT /*application='MarvelRivalsHeroApi'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN /*application='MarvelRivalsHeroApi'*/[0m
+  [1m[36mHero Create (0.4ms)[0m  [1m[32mINSERT INTO "heros" ("name", "role_id", "created_at", "updated_at") VALUES ('Moon Knight', 2, '2025-04-24 03:00:00.076701', '2025-04-24 03:00:00.076701') RETURNING "id" /*application='MarvelRivalsHeroApi'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT /*application='MarvelRivalsHeroApi'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN /*application='MarvelRivalsHeroApi'*/[0m
+  [1m[36mHero Create (0.4ms)[0m  [1m[32mINSERT INTO "heros" ("name", "role_id", "created_at", "updated_at") VALUES ('Namor', 2, '2025-04-24 03:00:00.077991', '2025-04-24 03:00:00.077991') RETURNING "id" /*application='MarvelRivalsHeroApi'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT /*application='MarvelRivalsHeroApi'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN /*application='MarvelRivalsHeroApi'*/[0m
+  [1m[36mHero Create (0.5ms)[0m  [1m[32mINSERT INTO "heros" ("name", "role_id", "created_at", "updated_at") VALUES ('Peni Parker', 3, '2025-04-24 03:00:00.086945', '2025-04-24 03:00:00.086945') RETURNING "id" /*application='MarvelRivalsHeroApi'*/[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT /*application='MarvelRivalsHeroApi'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN /*application='MarvelRivalsHeroApi'*/[0m
+  [1m[36mHero Create (0.4ms)[0m  [1m[32mINSERT INTO "heros" ("name", "role_id", "created_at", "updated_at") VALUES ('Psylocke', 2, '2025-04-24 03:00:00.088233', '2025-04-24 03:00:00.088233') RETURNING "id" /*application='MarvelRivalsHeroApi'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT /*application='MarvelRivalsHeroApi'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN /*application='MarvelRivalsHeroApi'*/[0m
+  [1m[36mHero Create (1.3ms)[0m  [1m[32mINSERT INTO "heros" ("name", "role_id", "created_at", "updated_at") VALUES ('Rocket Raccoon', 1, '2025-04-24 03:00:00.093325', '2025-04-24 03:00:00.093325') RETURNING "id" /*application='MarvelRivalsHeroApi'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT /*application='MarvelRivalsHeroApi'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN /*application='MarvelRivalsHeroApi'*/[0m
+  [1m[36mHero Create (0.4ms)[0m  [1m[32mINSERT INTO "heros" ("name", "role_id", "created_at", "updated_at") VALUES ('Scarlet Witch', 2, '2025-04-24 03:00:00.098909', '2025-04-24 03:00:00.098909') RETURNING "id" /*application='MarvelRivalsHeroApi'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT /*application='MarvelRivalsHeroApi'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN /*application='MarvelRivalsHeroApi'*/[0m
+  [1m[36mHero Create (0.3ms)[0m  [1m[32mINSERT INTO "heros" ("name", "role_id", "created_at", "updated_at") VALUES ('Spider-man', 2, '2025-04-24 03:00:00.099800', '2025-04-24 03:00:00.099800') RETURNING "id" /*application='MarvelRivalsHeroApi'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT /*application='MarvelRivalsHeroApi'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN /*application='MarvelRivalsHeroApi'*/[0m
+  [1m[36mHero Create (0.9ms)[0m  [1m[32mINSERT INTO "heros" ("name", "role_id", "created_at", "updated_at") VALUES ('Squirrel Girl', 2, '2025-04-24 03:00:00.105225', '2025-04-24 03:00:00.105225') RETURNING "id" /*application='MarvelRivalsHeroApi'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT /*application='MarvelRivalsHeroApi'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN /*application='MarvelRivalsHeroApi'*/[0m
+  [1m[36mHero Create (0.4ms)[0m  [1m[32mINSERT INTO "heros" ("name", "role_id", "created_at", "updated_at") VALUES ('Star-lord', 2, '2025-04-24 03:00:00.106662', '2025-04-24 03:00:00.106662') RETURNING "id" /*application='MarvelRivalsHeroApi'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT /*application='MarvelRivalsHeroApi'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN /*application='MarvelRivalsHeroApi'*/[0m
+  [1m[36mHero Create (0.3ms)[0m  [1m[32mINSERT INTO "heros" ("name", "role_id", "created_at", "updated_at") VALUES ('Storm', 2, '2025-04-24 03:00:00.107515', '2025-04-24 03:00:00.107515') RETURNING "id" /*application='MarvelRivalsHeroApi'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT /*application='MarvelRivalsHeroApi'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN /*application='MarvelRivalsHeroApi'*/[0m
+  [1m[36mHero Create (0.4ms)[0m  [1m[32mINSERT INTO "heros" ("name", "role_id", "created_at", "updated_at") VALUES ('The Punisher', 2, '2025-04-24 03:00:00.108754', '2025-04-24 03:00:00.108754') RETURNING "id" /*application='MarvelRivalsHeroApi'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT /*application='MarvelRivalsHeroApi'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN /*application='MarvelRivalsHeroApi'*/[0m
+  [1m[36mHero Create (0.4ms)[0m  [1m[32mINSERT INTO "heros" ("name", "role_id", "created_at", "updated_at") VALUES ('The Thing', 3, '2025-04-24 03:00:00.109661', '2025-04-24 03:00:00.109661') RETURNING "id" /*application='MarvelRivalsHeroApi'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT /*application='MarvelRivalsHeroApi'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN /*application='MarvelRivalsHeroApi'*/[0m
+  [1m[36mHero Create (0.4ms)[0m  [1m[32mINSERT INTO "heros" ("name", "role_id", "created_at", "updated_at") VALUES ('Thor', 3, '2025-04-24 03:00:00.110580', '2025-04-24 03:00:00.110580') RETURNING "id" /*application='MarvelRivalsHeroApi'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT /*application='MarvelRivalsHeroApi'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN /*application='MarvelRivalsHeroApi'*/[0m
+  [1m[36mHero Create (0.4ms)[0m  [1m[32mINSERT INTO "heros" ("name", "role_id", "created_at", "updated_at") VALUES ('Venom', 3, '2025-04-24 03:00:00.112025', '2025-04-24 03:00:00.112025') RETURNING "id" /*application='MarvelRivalsHeroApi'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT /*application='MarvelRivalsHeroApi'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN /*application='MarvelRivalsHeroApi'*/[0m
+  [1m[36mHero Create (0.4ms)[0m  [1m[32mINSERT INTO "heros" ("name", "role_id", "created_at", "updated_at") VALUES ('Winter Soldier', 2, '2025-04-24 03:00:00.112942', '2025-04-24 03:00:00.112942') RETURNING "id" /*application='MarvelRivalsHeroApi'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT /*application='MarvelRivalsHeroApi'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN /*application='MarvelRivalsHeroApi'*/[0m
+  [1m[36mHero Create (0.9ms)[0m  [1m[32mINSERT INTO "heros" ("name", "role_id", "created_at", "updated_at") VALUES ('Wolverine', 2, '2025-04-24 03:00:00.113835', '2025-04-24 03:00:00.113835') RETURNING "id" /*application='MarvelRivalsHeroApi'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT /*application='MarvelRivalsHeroApi'*/[0m
+  [1m[36mRole Count (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "roles" /*application='MarvelRivalsHeroApi'*/[0m
+  [1m[36mHero Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "heros" /*application='MarvelRivalsHeroApi'*/[0m
+Started GET "/" for ::1 at 2025-04-23 21:09:08 -0600
+  [1m[36mActiveRecord::SchemaMigration Load (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='MarvelRivalsHeroApi'*/[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /Users/ajmortensen/.local/share/mise/installs/ruby/3.4.3/lib/ruby/gems/3.4.0/gems/railties-8.0.2/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /Users/ajmortensen/.local/share/mise/installs/ruby/3.4.3/lib/ruby/gems/3.4.0/gems/railties-8.0.2/lib/rails/templates/rails/welcome/index.html.erb (Duration: 0.5ms | GC: 0.0ms)
+Completed 200 OK in 48ms (Views: 3.8ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/heroes" for ::1 at 2025-04-23 21:15:17 -0600
+  
+ActionController::RoutingError (No route matches [GET] "/api/heroes"):
+  
+Started GET "/api/v1/heroes" for ::1 at 2025-04-23 21:15:58 -0600
+Processing by Api::V1::HeroesController#index as */*
+  [1m[36mHero Load (19.4ms)[0m  [1m[34mSELECT "heros".* FROM "heros" /*action='index',application='MarvelRivalsHeroApi',controller='heroes'*/[0m
+  ↳ app/controllers/api/v1/heroes_controller.rb:7:in 'Api::V1::HeroesController#index'
+  [1m[36mRole Load (0.7ms)[0m  [1m[34mSELECT "roles".* FROM "roles" WHERE "roles"."id" IN (1, 2, 3) /*action='index',application='MarvelRivalsHeroApi',controller='heroes'*/[0m
+  ↳ app/controllers/api/v1/heroes_controller.rb:7:in 'Api::V1::HeroesController#index'
+Completed 200 OK in 131ms (Views: 0.6ms | ActiveRecord: 39.0ms (2 queries, 0 cached) | GC: 3.8ms)
+
+
+Started GET "/api/v1/heroes" for ::1 at 2025-04-23 21:17:09 -0600
+Processing by Api::V1::HeroesController#index as */*
+  [1m[36mHero Load (0.8ms)[0m  [1m[34mSELECT "heros".* FROM "heros" /*action='index',application='MarvelRivalsHeroApi',controller='heroes'*/[0m
+  ↳ app/controllers/api/v1/heroes_controller.rb:7:in 'Api::V1::HeroesController#index'
+  [1m[36mRole Load (0.4ms)[0m  [1m[34mSELECT "roles".* FROM "roles" WHERE "roles"."id" IN (1, 2, 3) /*action='index',application='MarvelRivalsHeroApi',controller='heroes'*/[0m
+  ↳ app/controllers/api/v1/heroes_controller.rb:7:in 'Api::V1::HeroesController#index'
+Completed 200 OK in 57ms (Views: 0.4ms | ActiveRecord: 8.7ms (2 queries, 0 cached) | GC: 0.4ms)
+
+
+Started GET "/api/v1/heroes" for ::1 at 2025-04-23 21:17:30 -0600
+  [1m[36mActiveRecord::SchemaMigration Load (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='MarvelRivalsHeroApi'*/[0m
+Processing by Api::V1::HeroesController#index as */*
+  [1m[36mHero Load (14.1ms)[0m  [1m[34mSELECT "heros".* FROM "heros" /*action='index',application='MarvelRivalsHeroApi',controller='heroes'*/[0m
+  ↳ app/controllers/api/v1/heroes_controller.rb:7:in 'Api::V1::HeroesController#index'
+  [1m[36mRole Load (1.1ms)[0m  [1m[34mSELECT "roles".* FROM "roles" WHERE "roles"."id" IN (1, 2, 3) /*action='index',application='MarvelRivalsHeroApi',controller='heroes'*/[0m
+  ↳ app/controllers/api/v1/heroes_controller.rb:7:in 'Api::V1::HeroesController#index'
+Completed 200 OK in 109ms (Views: 0.7ms | ActiveRecord: 30.6ms (2 queries, 0 cached) | GC: 0.1ms)
+
+
+Started GET "/api/v1/roles" for ::1 at 2025-04-23 21:17:41 -0600
+  
+AbstractController::ActionNotFound (The action 'index' could not be found for Api::V1::RolesController):
+  
+actionpack (8.0.2) lib/abstract_controller/base.rb:158:in 'AbstractController::Base#process'
+actionview (8.0.2) lib/action_view/rendering.rb:40:in 'ActionView::Rendering#process'
+actionpack (8.0.2) lib/action_controller/metal.rb:252:in 'ActionController::Metal#dispatch'
+actionpack (8.0.2) lib/action_controller/metal.rb:335:in 'ActionController::Metal.dispatch'
+actionpack (8.0.2) lib/action_dispatch/routing/route_set.rb:67:in 'ActionDispatch::Routing::RouteSet::Dispatcher#dispatch'
+actionpack (8.0.2) lib/action_dispatch/routing/route_set.rb:50:in 'ActionDispatch::Routing::RouteSet::Dispatcher#serve'
+actionpack (8.0.2) lib/action_dispatch/journey/router.rb:53:in 'block in ActionDispatch::Journey::Router#serve'
+actionpack (8.0.2) lib/action_dispatch/journey/router.rb:133:in 'block in ActionDispatch::Journey::Router#find_routes'
+actionpack (8.0.2) lib/action_dispatch/journey/router.rb:126:in 'Array#each'
+actionpack (8.0.2) lib/action_dispatch/journey/router.rb:126:in 'ActionDispatch::Journey::Router#find_routes'
+actionpack (8.0.2) lib/action_dispatch/journey/router.rb:34:in 'ActionDispatch::Journey::Router#serve'
+actionpack (8.0.2) lib/action_dispatch/routing/route_set.rb:908:in 'ActionDispatch::Routing::RouteSet#call'
+railties (8.0.2) lib/rails/engine/lazy_route_set.rb:68:in 'Rails::Engine::LazyRouteSet#call'
+rack (3.1.13) lib/rack/tempfile_reaper.rb:20:in 'Rack::TempfileReaper#call'
+rack (3.1.13) lib/rack/etag.rb:29:in 'Rack::ETag#call'
+rack (3.1.13) lib/rack/conditional_get.rb:31:in 'Rack::ConditionalGet#call'
+rack (3.1.13) lib/rack/head.rb:15:in 'Rack::Head#call'
+actionpack (8.0.2) lib/action_dispatch/http/permissions_policy.rb:38:in 'ActionDispatch::PermissionsPolicy::Middleware#call'
+actionpack (8.0.2) lib/action_dispatch/http/content_security_policy.rb:38:in 'ActionDispatch::ContentSecurityPolicy::Middleware#call'
+rack-session (2.1.0) lib/rack/session/abstract/id.rb:274:in 'Rack::Session::Abstract::Persisted#context'
+rack-session (2.1.0) lib/rack/session/abstract/id.rb:268:in 'Rack::Session::Abstract::Persisted#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/cookies.rb:706:in 'ActionDispatch::Cookies#call'
+activerecord (8.0.2) lib/active_record/migration.rb:671:in 'ActiveRecord::Migration::CheckPending#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/callbacks.rb:31:in 'block in ActionDispatch::Callbacks#call'
+activesupport (8.0.2) lib/active_support/callbacks.rb:100:in 'ActiveSupport::Callbacks#run_callbacks'
+actionpack (8.0.2) lib/action_dispatch/middleware/callbacks.rb:30:in 'ActionDispatch::Callbacks#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/executor.rb:16:in 'ActionDispatch::Executor#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in 'ActionDispatch::ActionableExceptions#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/debug_exceptions.rb:31:in 'ActionDispatch::DebugExceptions#call'
+web-console (4.2.1) lib/web_console/middleware.rb:132:in 'WebConsole::Middleware#call_app'
+web-console (4.2.1) lib/web_console/middleware.rb:28:in 'block in WebConsole::Middleware#call'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in 'Kernel#catch'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in 'WebConsole::Middleware#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/show_exceptions.rb:32:in 'ActionDispatch::ShowExceptions#call'
+railties (8.0.2) lib/rails/rack/logger.rb:41:in 'Rails::Rack::Logger#call_app'
+railties (8.0.2) lib/rails/rack/logger.rb:29:in 'Rails::Rack::Logger#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/remote_ip.rb:96:in 'ActionDispatch::RemoteIp#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/request_id.rb:34:in 'ActionDispatch::RequestId#call'
+rack (3.1.13) lib/rack/method_override.rb:28:in 'Rack::MethodOverride#call'
+rack (3.1.13) lib/rack/runtime.rb:24:in 'Rack::Runtime#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/server_timing.rb:61:in 'block in ActionDispatch::ServerTiming#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/server_timing.rb:26:in 'ActionDispatch::ServerTiming::Subscriber#collect_events'
+actionpack (8.0.2) lib/action_dispatch/middleware/server_timing.rb:60:in 'ActionDispatch::ServerTiming#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/executor.rb:16:in 'ActionDispatch::Executor#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/static.rb:27:in 'ActionDispatch::Static#call'
+rack (3.1.13) lib/rack/sendfile.rb:114:in 'Rack::Sendfile#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/host_authorization.rb:143:in 'ActionDispatch::HostAuthorization#call'
+railties (8.0.2) lib/rails/engine.rb:535:in 'Rails::Engine#call'
+puma (6.6.0) lib/puma/configuration.rb:279:in 'Puma::Configuration::ConfigMiddleware#call'
+puma (6.6.0) lib/puma/request.rb:99:in 'block in Puma::Request#handle_request'
+puma (6.6.0) lib/puma/thread_pool.rb:390:in 'Puma::ThreadPool#with_force_shutdown'
+puma (6.6.0) lib/puma/request.rb:98:in 'Puma::Request#handle_request'
+puma (6.6.0) lib/puma/server.rb:472:in 'Puma::Server#process_client'
+puma (6.6.0) lib/puma/server.rb:254:in 'block in Puma::Server#run'
+puma (6.6.0) lib/puma/thread_pool.rb:167:in 'block in Puma::ThreadPool#spawn_thread'
+Started GET "/api/v1/role" for ::1 at 2025-04-23 21:17:49 -0600
+  
+ActionController::RoutingError (No route matches [GET] "/api/v1/role"):
+  
+Started GET "/api/v1/rols" for ::1 at 2025-04-23 21:17:53 -0600
+  
+ActionController::RoutingError (No route matches [GET] "/api/v1/rols"):
+  
+Started GET "/api/v1/roles" for ::1 at 2025-04-23 21:17:55 -0600
+  
+AbstractController::ActionNotFound (The action 'index' could not be found for Api::V1::RolesController):
+  
+actionpack (8.0.2) lib/abstract_controller/base.rb:158:in 'AbstractController::Base#process'
+actionview (8.0.2) lib/action_view/rendering.rb:40:in 'ActionView::Rendering#process'
+actionpack (8.0.2) lib/action_controller/metal.rb:252:in 'ActionController::Metal#dispatch'
+actionpack (8.0.2) lib/action_controller/metal.rb:335:in 'ActionController::Metal.dispatch'
+actionpack (8.0.2) lib/action_dispatch/routing/route_set.rb:67:in 'ActionDispatch::Routing::RouteSet::Dispatcher#dispatch'
+actionpack (8.0.2) lib/action_dispatch/routing/route_set.rb:50:in 'ActionDispatch::Routing::RouteSet::Dispatcher#serve'
+actionpack (8.0.2) lib/action_dispatch/journey/router.rb:53:in 'block in ActionDispatch::Journey::Router#serve'
+actionpack (8.0.2) lib/action_dispatch/journey/router.rb:133:in 'block in ActionDispatch::Journey::Router#find_routes'
+actionpack (8.0.2) lib/action_dispatch/journey/router.rb:126:in 'Array#each'
+actionpack (8.0.2) lib/action_dispatch/journey/router.rb:126:in 'ActionDispatch::Journey::Router#find_routes'
+actionpack (8.0.2) lib/action_dispatch/journey/router.rb:34:in 'ActionDispatch::Journey::Router#serve'
+actionpack (8.0.2) lib/action_dispatch/routing/route_set.rb:908:in 'ActionDispatch::Routing::RouteSet#call'
+railties (8.0.2) lib/rails/engine/lazy_route_set.rb:68:in 'Rails::Engine::LazyRouteSet#call'
+rack (3.1.13) lib/rack/tempfile_reaper.rb:20:in 'Rack::TempfileReaper#call'
+rack (3.1.13) lib/rack/etag.rb:29:in 'Rack::ETag#call'
+rack (3.1.13) lib/rack/conditional_get.rb:31:in 'Rack::ConditionalGet#call'
+rack (3.1.13) lib/rack/head.rb:15:in 'Rack::Head#call'
+actionpack (8.0.2) lib/action_dispatch/http/permissions_policy.rb:38:in 'ActionDispatch::PermissionsPolicy::Middleware#call'
+actionpack (8.0.2) lib/action_dispatch/http/content_security_policy.rb:38:in 'ActionDispatch::ContentSecurityPolicy::Middleware#call'
+rack-session (2.1.0) lib/rack/session/abstract/id.rb:274:in 'Rack::Session::Abstract::Persisted#context'
+rack-session (2.1.0) lib/rack/session/abstract/id.rb:268:in 'Rack::Session::Abstract::Persisted#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/cookies.rb:706:in 'ActionDispatch::Cookies#call'
+activerecord (8.0.2) lib/active_record/migration.rb:671:in 'ActiveRecord::Migration::CheckPending#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/callbacks.rb:31:in 'block in ActionDispatch::Callbacks#call'
+activesupport (8.0.2) lib/active_support/callbacks.rb:100:in 'ActiveSupport::Callbacks#run_callbacks'
+actionpack (8.0.2) lib/action_dispatch/middleware/callbacks.rb:30:in 'ActionDispatch::Callbacks#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/executor.rb:16:in 'ActionDispatch::Executor#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in 'ActionDispatch::ActionableExceptions#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/debug_exceptions.rb:31:in 'ActionDispatch::DebugExceptions#call'
+web-console (4.2.1) lib/web_console/middleware.rb:132:in 'WebConsole::Middleware#call_app'
+web-console (4.2.1) lib/web_console/middleware.rb:28:in 'block in WebConsole::Middleware#call'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in 'Kernel#catch'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in 'WebConsole::Middleware#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/show_exceptions.rb:32:in 'ActionDispatch::ShowExceptions#call'
+railties (8.0.2) lib/rails/rack/logger.rb:41:in 'Rails::Rack::Logger#call_app'
+railties (8.0.2) lib/rails/rack/logger.rb:29:in 'Rails::Rack::Logger#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/remote_ip.rb:96:in 'ActionDispatch::RemoteIp#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/request_id.rb:34:in 'ActionDispatch::RequestId#call'
+rack (3.1.13) lib/rack/method_override.rb:28:in 'Rack::MethodOverride#call'
+rack (3.1.13) lib/rack/runtime.rb:24:in 'Rack::Runtime#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/server_timing.rb:61:in 'block in ActionDispatch::ServerTiming#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/server_timing.rb:26:in 'ActionDispatch::ServerTiming::Subscriber#collect_events'
+actionpack (8.0.2) lib/action_dispatch/middleware/server_timing.rb:60:in 'ActionDispatch::ServerTiming#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/executor.rb:16:in 'ActionDispatch::Executor#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/static.rb:27:in 'ActionDispatch::Static#call'
+rack (3.1.13) lib/rack/sendfile.rb:114:in 'Rack::Sendfile#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/host_authorization.rb:143:in 'ActionDispatch::HostAuthorization#call'
+railties (8.0.2) lib/rails/engine.rb:535:in 'Rails::Engine#call'
+puma (6.6.0) lib/puma/configuration.rb:279:in 'Puma::Configuration::ConfigMiddleware#call'
+puma (6.6.0) lib/puma/request.rb:99:in 'block in Puma::Request#handle_request'
+puma (6.6.0) lib/puma/thread_pool.rb:390:in 'Puma::ThreadPool#with_force_shutdown'
+puma (6.6.0) lib/puma/request.rb:98:in 'Puma::Request#handle_request'
+puma (6.6.0) lib/puma/server.rb:472:in 'Puma::Server#process_client'
+puma (6.6.0) lib/puma/server.rb:254:in 'block in Puma::Server#run'
+puma (6.6.0) lib/puma/thread_pool.rb:167:in 'block in Puma::ThreadPool#spawn_thread'
+Started GET "/api/v1/roles" for ::1 at 2025-04-23 21:19:46 -0600
+  [1m[36mActiveRecord::SchemaMigration Load (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='MarvelRivalsHeroApi'*/[0m
+  
+AbstractController::ActionNotFound (The action 'index' could not be found for Api::V1::RolesController):
+  
+actionpack (8.0.2) lib/abstract_controller/base.rb:158:in 'AbstractController::Base#process'
+actionview (8.0.2) lib/action_view/rendering.rb:40:in 'ActionView::Rendering#process'
+actionpack (8.0.2) lib/action_controller/metal.rb:252:in 'ActionController::Metal#dispatch'
+actionpack (8.0.2) lib/action_controller/metal.rb:335:in 'ActionController::Metal.dispatch'
+actionpack (8.0.2) lib/action_dispatch/routing/route_set.rb:67:in 'ActionDispatch::Routing::RouteSet::Dispatcher#dispatch'
+actionpack (8.0.2) lib/action_dispatch/routing/route_set.rb:50:in 'ActionDispatch::Routing::RouteSet::Dispatcher#serve'
+actionpack (8.0.2) lib/action_dispatch/journey/router.rb:53:in 'block in ActionDispatch::Journey::Router#serve'
+actionpack (8.0.2) lib/action_dispatch/journey/router.rb:133:in 'block in ActionDispatch::Journey::Router#find_routes'
+actionpack (8.0.2) lib/action_dispatch/journey/router.rb:126:in 'Array#each'
+actionpack (8.0.2) lib/action_dispatch/journey/router.rb:126:in 'ActionDispatch::Journey::Router#find_routes'
+actionpack (8.0.2) lib/action_dispatch/journey/router.rb:34:in 'ActionDispatch::Journey::Router#serve'
+actionpack (8.0.2) lib/action_dispatch/routing/route_set.rb:908:in 'ActionDispatch::Routing::RouteSet#call'
+railties (8.0.2) lib/rails/engine/lazy_route_set.rb:68:in 'Rails::Engine::LazyRouteSet#call'
+rack (3.1.13) lib/rack/tempfile_reaper.rb:20:in 'Rack::TempfileReaper#call'
+rack (3.1.13) lib/rack/etag.rb:29:in 'Rack::ETag#call'
+rack (3.1.13) lib/rack/conditional_get.rb:31:in 'Rack::ConditionalGet#call'
+rack (3.1.13) lib/rack/head.rb:15:in 'Rack::Head#call'
+actionpack (8.0.2) lib/action_dispatch/http/permissions_policy.rb:38:in 'ActionDispatch::PermissionsPolicy::Middleware#call'
+actionpack (8.0.2) lib/action_dispatch/http/content_security_policy.rb:38:in 'ActionDispatch::ContentSecurityPolicy::Middleware#call'
+rack-session (2.1.0) lib/rack/session/abstract/id.rb:274:in 'Rack::Session::Abstract::Persisted#context'
+rack-session (2.1.0) lib/rack/session/abstract/id.rb:268:in 'Rack::Session::Abstract::Persisted#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/cookies.rb:706:in 'ActionDispatch::Cookies#call'
+activerecord (8.0.2) lib/active_record/migration.rb:671:in 'ActiveRecord::Migration::CheckPending#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/callbacks.rb:31:in 'block in ActionDispatch::Callbacks#call'
+activesupport (8.0.2) lib/active_support/callbacks.rb:100:in 'ActiveSupport::Callbacks#run_callbacks'
+actionpack (8.0.2) lib/action_dispatch/middleware/callbacks.rb:30:in 'ActionDispatch::Callbacks#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/executor.rb:16:in 'ActionDispatch::Executor#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in 'ActionDispatch::ActionableExceptions#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/debug_exceptions.rb:31:in 'ActionDispatch::DebugExceptions#call'
+web-console (4.2.1) lib/web_console/middleware.rb:132:in 'WebConsole::Middleware#call_app'
+web-console (4.2.1) lib/web_console/middleware.rb:28:in 'block in WebConsole::Middleware#call'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in 'Kernel#catch'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in 'WebConsole::Middleware#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/show_exceptions.rb:32:in 'ActionDispatch::ShowExceptions#call'
+railties (8.0.2) lib/rails/rack/logger.rb:41:in 'Rails::Rack::Logger#call_app'
+railties (8.0.2) lib/rails/rack/logger.rb:29:in 'Rails::Rack::Logger#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/remote_ip.rb:96:in 'ActionDispatch::RemoteIp#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/request_id.rb:34:in 'ActionDispatch::RequestId#call'
+rack (3.1.13) lib/rack/method_override.rb:28:in 'Rack::MethodOverride#call'
+rack (3.1.13) lib/rack/runtime.rb:24:in 'Rack::Runtime#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/server_timing.rb:61:in 'block in ActionDispatch::ServerTiming#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/server_timing.rb:26:in 'ActionDispatch::ServerTiming::Subscriber#collect_events'
+actionpack (8.0.2) lib/action_dispatch/middleware/server_timing.rb:60:in 'ActionDispatch::ServerTiming#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/executor.rb:16:in 'ActionDispatch::Executor#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/static.rb:27:in 'ActionDispatch::Static#call'
+rack (3.1.13) lib/rack/sendfile.rb:114:in 'Rack::Sendfile#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/host_authorization.rb:143:in 'ActionDispatch::HostAuthorization#call'
+railties (8.0.2) lib/rails/engine.rb:535:in 'Rails::Engine#call'
+puma (6.6.0) lib/puma/configuration.rb:279:in 'Puma::Configuration::ConfigMiddleware#call'
+puma (6.6.0) lib/puma/request.rb:99:in 'block in Puma::Request#handle_request'
+puma (6.6.0) lib/puma/thread_pool.rb:390:in 'Puma::ThreadPool#with_force_shutdown'
+puma (6.6.0) lib/puma/request.rb:98:in 'Puma::Request#handle_request'
+puma (6.6.0) lib/puma/server.rb:472:in 'Puma::Server#process_client'
+puma (6.6.0) lib/puma/server.rb:254:in 'block in Puma::Server#run'
+puma (6.6.0) lib/puma/thread_pool.rb:167:in 'block in Puma::ThreadPool#spawn_thread'
+Started GET "/api/v1/roles" for ::1 at 2025-04-23 21:20:01 -0600
+  
+AbstractController::ActionNotFound (The action 'index' could not be found for Api::V1::RolesController):
+  
+actionpack (8.0.2) lib/abstract_controller/base.rb:158:in 'AbstractController::Base#process'
+actionview (8.0.2) lib/action_view/rendering.rb:40:in 'ActionView::Rendering#process'
+actionpack (8.0.2) lib/action_controller/metal.rb:252:in 'ActionController::Metal#dispatch'
+actionpack (8.0.2) lib/action_controller/metal.rb:335:in 'ActionController::Metal.dispatch'
+actionpack (8.0.2) lib/action_dispatch/routing/route_set.rb:67:in 'ActionDispatch::Routing::RouteSet::Dispatcher#dispatch'
+actionpack (8.0.2) lib/action_dispatch/routing/route_set.rb:50:in 'ActionDispatch::Routing::RouteSet::Dispatcher#serve'
+actionpack (8.0.2) lib/action_dispatch/journey/router.rb:53:in 'block in ActionDispatch::Journey::Router#serve'
+actionpack (8.0.2) lib/action_dispatch/journey/router.rb:133:in 'block in ActionDispatch::Journey::Router#find_routes'
+actionpack (8.0.2) lib/action_dispatch/journey/router.rb:126:in 'Array#each'
+actionpack (8.0.2) lib/action_dispatch/journey/router.rb:126:in 'ActionDispatch::Journey::Router#find_routes'
+actionpack (8.0.2) lib/action_dispatch/journey/router.rb:34:in 'ActionDispatch::Journey::Router#serve'
+actionpack (8.0.2) lib/action_dispatch/routing/route_set.rb:908:in 'ActionDispatch::Routing::RouteSet#call'
+railties (8.0.2) lib/rails/engine/lazy_route_set.rb:68:in 'Rails::Engine::LazyRouteSet#call'
+rack (3.1.13) lib/rack/tempfile_reaper.rb:20:in 'Rack::TempfileReaper#call'
+rack (3.1.13) lib/rack/etag.rb:29:in 'Rack::ETag#call'
+rack (3.1.13) lib/rack/conditional_get.rb:31:in 'Rack::ConditionalGet#call'
+rack (3.1.13) lib/rack/head.rb:15:in 'Rack::Head#call'
+actionpack (8.0.2) lib/action_dispatch/http/permissions_policy.rb:38:in 'ActionDispatch::PermissionsPolicy::Middleware#call'
+actionpack (8.0.2) lib/action_dispatch/http/content_security_policy.rb:38:in 'ActionDispatch::ContentSecurityPolicy::Middleware#call'
+rack-session (2.1.0) lib/rack/session/abstract/id.rb:274:in 'Rack::Session::Abstract::Persisted#context'
+rack-session (2.1.0) lib/rack/session/abstract/id.rb:268:in 'Rack::Session::Abstract::Persisted#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/cookies.rb:706:in 'ActionDispatch::Cookies#call'
+activerecord (8.0.2) lib/active_record/migration.rb:671:in 'ActiveRecord::Migration::CheckPending#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/callbacks.rb:31:in 'block in ActionDispatch::Callbacks#call'
+activesupport (8.0.2) lib/active_support/callbacks.rb:100:in 'ActiveSupport::Callbacks#run_callbacks'
+actionpack (8.0.2) lib/action_dispatch/middleware/callbacks.rb:30:in 'ActionDispatch::Callbacks#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/executor.rb:16:in 'ActionDispatch::Executor#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in 'ActionDispatch::ActionableExceptions#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/debug_exceptions.rb:31:in 'ActionDispatch::DebugExceptions#call'
+web-console (4.2.1) lib/web_console/middleware.rb:132:in 'WebConsole::Middleware#call_app'
+web-console (4.2.1) lib/web_console/middleware.rb:28:in 'block in WebConsole::Middleware#call'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in 'Kernel#catch'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in 'WebConsole::Middleware#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/show_exceptions.rb:32:in 'ActionDispatch::ShowExceptions#call'
+railties (8.0.2) lib/rails/rack/logger.rb:41:in 'Rails::Rack::Logger#call_app'
+railties (8.0.2) lib/rails/rack/logger.rb:29:in 'Rails::Rack::Logger#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/remote_ip.rb:96:in 'ActionDispatch::RemoteIp#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/request_id.rb:34:in 'ActionDispatch::RequestId#call'
+rack (3.1.13) lib/rack/method_override.rb:28:in 'Rack::MethodOverride#call'
+rack (3.1.13) lib/rack/runtime.rb:24:in 'Rack::Runtime#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/server_timing.rb:61:in 'block in ActionDispatch::ServerTiming#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/server_timing.rb:26:in 'ActionDispatch::ServerTiming::Subscriber#collect_events'
+actionpack (8.0.2) lib/action_dispatch/middleware/server_timing.rb:60:in 'ActionDispatch::ServerTiming#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/executor.rb:16:in 'ActionDispatch::Executor#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/static.rb:27:in 'ActionDispatch::Static#call'
+rack (3.1.13) lib/rack/sendfile.rb:114:in 'Rack::Sendfile#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/host_authorization.rb:143:in 'ActionDispatch::HostAuthorization#call'
+railties (8.0.2) lib/rails/engine.rb:535:in 'Rails::Engine#call'
+puma (6.6.0) lib/puma/configuration.rb:279:in 'Puma::Configuration::ConfigMiddleware#call'
+puma (6.6.0) lib/puma/request.rb:99:in 'block in Puma::Request#handle_request'
+puma (6.6.0) lib/puma/thread_pool.rb:390:in 'Puma::ThreadPool#with_force_shutdown'
+puma (6.6.0) lib/puma/request.rb:98:in 'Puma::Request#handle_request'
+puma (6.6.0) lib/puma/server.rb:472:in 'Puma::Server#process_client'
+puma (6.6.0) lib/puma/server.rb:254:in 'block in Puma::Server#run'
+puma (6.6.0) lib/puma/thread_pool.rb:167:in 'block in Puma::ThreadPool#spawn_thread'
+Started GET "/api/v1/roles" for ::1 at 2025-04-23 21:20:18 -0600
+  [1m[36mActiveRecord::SchemaMigration Load (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='MarvelRivalsHeroApi'*/[0m
+  
+AbstractController::ActionNotFound (The action 'index' could not be found for Api::V1::RolesController):
+  
+actionpack (8.0.2) lib/abstract_controller/base.rb:158:in 'AbstractController::Base#process'
+actionview (8.0.2) lib/action_view/rendering.rb:40:in 'ActionView::Rendering#process'
+actionpack (8.0.2) lib/action_controller/metal.rb:252:in 'ActionController::Metal#dispatch'
+actionpack (8.0.2) lib/action_controller/metal.rb:335:in 'ActionController::Metal.dispatch'
+actionpack (8.0.2) lib/action_dispatch/routing/route_set.rb:67:in 'ActionDispatch::Routing::RouteSet::Dispatcher#dispatch'
+actionpack (8.0.2) lib/action_dispatch/routing/route_set.rb:50:in 'ActionDispatch::Routing::RouteSet::Dispatcher#serve'
+actionpack (8.0.2) lib/action_dispatch/journey/router.rb:53:in 'block in ActionDispatch::Journey::Router#serve'
+actionpack (8.0.2) lib/action_dispatch/journey/router.rb:133:in 'block in ActionDispatch::Journey::Router#find_routes'
+actionpack (8.0.2) lib/action_dispatch/journey/router.rb:126:in 'Array#each'
+actionpack (8.0.2) lib/action_dispatch/journey/router.rb:126:in 'ActionDispatch::Journey::Router#find_routes'
+actionpack (8.0.2) lib/action_dispatch/journey/router.rb:34:in 'ActionDispatch::Journey::Router#serve'
+actionpack (8.0.2) lib/action_dispatch/routing/route_set.rb:908:in 'ActionDispatch::Routing::RouteSet#call'
+railties (8.0.2) lib/rails/engine/lazy_route_set.rb:68:in 'Rails::Engine::LazyRouteSet#call'
+rack (3.1.13) lib/rack/tempfile_reaper.rb:20:in 'Rack::TempfileReaper#call'
+rack (3.1.13) lib/rack/etag.rb:29:in 'Rack::ETag#call'
+rack (3.1.13) lib/rack/conditional_get.rb:31:in 'Rack::ConditionalGet#call'
+rack (3.1.13) lib/rack/head.rb:15:in 'Rack::Head#call'
+actionpack (8.0.2) lib/action_dispatch/http/permissions_policy.rb:38:in 'ActionDispatch::PermissionsPolicy::Middleware#call'
+actionpack (8.0.2) lib/action_dispatch/http/content_security_policy.rb:38:in 'ActionDispatch::ContentSecurityPolicy::Middleware#call'
+rack-session (2.1.0) lib/rack/session/abstract/id.rb:274:in 'Rack::Session::Abstract::Persisted#context'
+rack-session (2.1.0) lib/rack/session/abstract/id.rb:268:in 'Rack::Session::Abstract::Persisted#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/cookies.rb:706:in 'ActionDispatch::Cookies#call'
+activerecord (8.0.2) lib/active_record/migration.rb:671:in 'ActiveRecord::Migration::CheckPending#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/callbacks.rb:31:in 'block in ActionDispatch::Callbacks#call'
+activesupport (8.0.2) lib/active_support/callbacks.rb:100:in 'ActiveSupport::Callbacks#run_callbacks'
+actionpack (8.0.2) lib/action_dispatch/middleware/callbacks.rb:30:in 'ActionDispatch::Callbacks#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/executor.rb:16:in 'ActionDispatch::Executor#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in 'ActionDispatch::ActionableExceptions#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/debug_exceptions.rb:31:in 'ActionDispatch::DebugExceptions#call'
+web-console (4.2.1) lib/web_console/middleware.rb:132:in 'WebConsole::Middleware#call_app'
+web-console (4.2.1) lib/web_console/middleware.rb:28:in 'block in WebConsole::Middleware#call'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in 'Kernel#catch'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in 'WebConsole::Middleware#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/show_exceptions.rb:32:in 'ActionDispatch::ShowExceptions#call'
+railties (8.0.2) lib/rails/rack/logger.rb:41:in 'Rails::Rack::Logger#call_app'
+railties (8.0.2) lib/rails/rack/logger.rb:29:in 'Rails::Rack::Logger#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/remote_ip.rb:96:in 'ActionDispatch::RemoteIp#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/request_id.rb:34:in 'ActionDispatch::RequestId#call'
+rack (3.1.13) lib/rack/method_override.rb:28:in 'Rack::MethodOverride#call'
+rack (3.1.13) lib/rack/runtime.rb:24:in 'Rack::Runtime#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/server_timing.rb:61:in 'block in ActionDispatch::ServerTiming#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/server_timing.rb:26:in 'ActionDispatch::ServerTiming::Subscriber#collect_events'
+actionpack (8.0.2) lib/action_dispatch/middleware/server_timing.rb:60:in 'ActionDispatch::ServerTiming#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/executor.rb:16:in 'ActionDispatch::Executor#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/static.rb:27:in 'ActionDispatch::Static#call'
+rack (3.1.13) lib/rack/sendfile.rb:114:in 'Rack::Sendfile#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/host_authorization.rb:143:in 'ActionDispatch::HostAuthorization#call'
+railties (8.0.2) lib/rails/engine.rb:535:in 'Rails::Engine#call'
+puma (6.6.0) lib/puma/configuration.rb:279:in 'Puma::Configuration::ConfigMiddleware#call'
+puma (6.6.0) lib/puma/request.rb:99:in 'block in Puma::Request#handle_request'
+puma (6.6.0) lib/puma/thread_pool.rb:390:in 'Puma::ThreadPool#with_force_shutdown'
+puma (6.6.0) lib/puma/request.rb:98:in 'Puma::Request#handle_request'
+puma (6.6.0) lib/puma/server.rb:472:in 'Puma::Server#process_client'
+puma (6.6.0) lib/puma/server.rb:254:in 'block in Puma::Server#run'
+puma (6.6.0) lib/puma/thread_pool.rb:167:in 'block in Puma::ThreadPool#spawn_thread'
+Started GET "/api/v1/roles/1" for ::1 at 2025-04-23 21:20:21 -0600
+  
+AbstractController::ActionNotFound (The action 'show' could not be found for Api::V1::RolesController):
+  
+actionpack (8.0.2) lib/abstract_controller/base.rb:158:in 'AbstractController::Base#process'
+actionview (8.0.2) lib/action_view/rendering.rb:40:in 'ActionView::Rendering#process'
+actionpack (8.0.2) lib/action_controller/metal.rb:252:in 'ActionController::Metal#dispatch'
+actionpack (8.0.2) lib/action_controller/metal.rb:335:in 'ActionController::Metal.dispatch'
+actionpack (8.0.2) lib/action_dispatch/routing/route_set.rb:67:in 'ActionDispatch::Routing::RouteSet::Dispatcher#dispatch'
+actionpack (8.0.2) lib/action_dispatch/routing/route_set.rb:50:in 'ActionDispatch::Routing::RouteSet::Dispatcher#serve'
+actionpack (8.0.2) lib/action_dispatch/journey/router.rb:53:in 'block in ActionDispatch::Journey::Router#serve'
+actionpack (8.0.2) lib/action_dispatch/journey/router.rb:133:in 'block in ActionDispatch::Journey::Router#find_routes'
+actionpack (8.0.2) lib/action_dispatch/journey/router.rb:126:in 'Array#each'
+actionpack (8.0.2) lib/action_dispatch/journey/router.rb:126:in 'ActionDispatch::Journey::Router#find_routes'
+actionpack (8.0.2) lib/action_dispatch/journey/router.rb:34:in 'ActionDispatch::Journey::Router#serve'
+actionpack (8.0.2) lib/action_dispatch/routing/route_set.rb:908:in 'ActionDispatch::Routing::RouteSet#call'
+railties (8.0.2) lib/rails/engine/lazy_route_set.rb:68:in 'Rails::Engine::LazyRouteSet#call'
+rack (3.1.13) lib/rack/tempfile_reaper.rb:20:in 'Rack::TempfileReaper#call'
+rack (3.1.13) lib/rack/etag.rb:29:in 'Rack::ETag#call'
+rack (3.1.13) lib/rack/conditional_get.rb:31:in 'Rack::ConditionalGet#call'
+rack (3.1.13) lib/rack/head.rb:15:in 'Rack::Head#call'
+actionpack (8.0.2) lib/action_dispatch/http/permissions_policy.rb:38:in 'ActionDispatch::PermissionsPolicy::Middleware#call'
+actionpack (8.0.2) lib/action_dispatch/http/content_security_policy.rb:38:in 'ActionDispatch::ContentSecurityPolicy::Middleware#call'
+rack-session (2.1.0) lib/rack/session/abstract/id.rb:274:in 'Rack::Session::Abstract::Persisted#context'
+rack-session (2.1.0) lib/rack/session/abstract/id.rb:268:in 'Rack::Session::Abstract::Persisted#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/cookies.rb:706:in 'ActionDispatch::Cookies#call'
+activerecord (8.0.2) lib/active_record/migration.rb:671:in 'ActiveRecord::Migration::CheckPending#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/callbacks.rb:31:in 'block in ActionDispatch::Callbacks#call'
+activesupport (8.0.2) lib/active_support/callbacks.rb:100:in 'ActiveSupport::Callbacks#run_callbacks'
+actionpack (8.0.2) lib/action_dispatch/middleware/callbacks.rb:30:in 'ActionDispatch::Callbacks#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/executor.rb:16:in 'ActionDispatch::Executor#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in 'ActionDispatch::ActionableExceptions#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/debug_exceptions.rb:31:in 'ActionDispatch::DebugExceptions#call'
+web-console (4.2.1) lib/web_console/middleware.rb:132:in 'WebConsole::Middleware#call_app'
+web-console (4.2.1) lib/web_console/middleware.rb:28:in 'block in WebConsole::Middleware#call'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in 'Kernel#catch'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in 'WebConsole::Middleware#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/show_exceptions.rb:32:in 'ActionDispatch::ShowExceptions#call'
+railties (8.0.2) lib/rails/rack/logger.rb:41:in 'Rails::Rack::Logger#call_app'
+railties (8.0.2) lib/rails/rack/logger.rb:29:in 'Rails::Rack::Logger#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/remote_ip.rb:96:in 'ActionDispatch::RemoteIp#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/request_id.rb:34:in 'ActionDispatch::RequestId#call'
+rack (3.1.13) lib/rack/method_override.rb:28:in 'Rack::MethodOverride#call'
+rack (3.1.13) lib/rack/runtime.rb:24:in 'Rack::Runtime#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/server_timing.rb:61:in 'block in ActionDispatch::ServerTiming#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/server_timing.rb:26:in 'ActionDispatch::ServerTiming::Subscriber#collect_events'
+actionpack (8.0.2) lib/action_dispatch/middleware/server_timing.rb:60:in 'ActionDispatch::ServerTiming#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/executor.rb:16:in 'ActionDispatch::Executor#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/static.rb:27:in 'ActionDispatch::Static#call'
+rack (3.1.13) lib/rack/sendfile.rb:114:in 'Rack::Sendfile#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/host_authorization.rb:143:in 'ActionDispatch::HostAuthorization#call'
+railties (8.0.2) lib/rails/engine.rb:535:in 'Rails::Engine#call'
+puma (6.6.0) lib/puma/configuration.rb:279:in 'Puma::Configuration::ConfigMiddleware#call'
+puma (6.6.0) lib/puma/request.rb:99:in 'block in Puma::Request#handle_request'
+puma (6.6.0) lib/puma/thread_pool.rb:390:in 'Puma::ThreadPool#with_force_shutdown'
+puma (6.6.0) lib/puma/request.rb:98:in 'Puma::Request#handle_request'
+puma (6.6.0) lib/puma/server.rb:472:in 'Puma::Server#process_client'
+puma (6.6.0) lib/puma/server.rb:254:in 'block in Puma::Server#run'
+puma (6.6.0) lib/puma/thread_pool.rb:167:in 'block in Puma::ThreadPool#spawn_thread'
+Started GET "/api/v1/role/1" for ::1 at 2025-04-23 21:20:24 -0600
+  
+ActionController::RoutingError (No route matches [GET] "/api/v1/role/1"):
+  
+Started GET "/api/v1/role/1" for ::1 at 2025-04-23 21:22:03 -0600
+  [1m[36mActiveRecord::SchemaMigration Load (1.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='MarvelRivalsHeroApi'*/[0m
+  
+ActionController::RoutingError (No route matches [GET] "/api/v1/role/1"):
+  
+Started GET "/api/v1/roles/1" for ::1 at 2025-04-23 21:22:36 -0600
+  
+AbstractController::ActionNotFound (The action 'show' could not be found for Api::V1::RolesController):
+  
+actionpack (8.0.2) lib/abstract_controller/base.rb:158:in 'AbstractController::Base#process'
+actionview (8.0.2) lib/action_view/rendering.rb:40:in 'ActionView::Rendering#process'
+actionpack (8.0.2) lib/action_controller/metal.rb:252:in 'ActionController::Metal#dispatch'
+actionpack (8.0.2) lib/action_controller/metal.rb:335:in 'ActionController::Metal.dispatch'
+actionpack (8.0.2) lib/action_dispatch/routing/route_set.rb:67:in 'ActionDispatch::Routing::RouteSet::Dispatcher#dispatch'
+actionpack (8.0.2) lib/action_dispatch/routing/route_set.rb:50:in 'ActionDispatch::Routing::RouteSet::Dispatcher#serve'
+actionpack (8.0.2) lib/action_dispatch/journey/router.rb:53:in 'block in ActionDispatch::Journey::Router#serve'
+actionpack (8.0.2) lib/action_dispatch/journey/router.rb:133:in 'block in ActionDispatch::Journey::Router#find_routes'
+actionpack (8.0.2) lib/action_dispatch/journey/router.rb:126:in 'Array#each'
+actionpack (8.0.2) lib/action_dispatch/journey/router.rb:126:in 'ActionDispatch::Journey::Router#find_routes'
+actionpack (8.0.2) lib/action_dispatch/journey/router.rb:34:in 'ActionDispatch::Journey::Router#serve'
+actionpack (8.0.2) lib/action_dispatch/routing/route_set.rb:908:in 'ActionDispatch::Routing::RouteSet#call'
+railties (8.0.2) lib/rails/engine/lazy_route_set.rb:68:in 'Rails::Engine::LazyRouteSet#call'
+rack (3.1.13) lib/rack/tempfile_reaper.rb:20:in 'Rack::TempfileReaper#call'
+rack (3.1.13) lib/rack/etag.rb:29:in 'Rack::ETag#call'
+rack (3.1.13) lib/rack/conditional_get.rb:31:in 'Rack::ConditionalGet#call'
+rack (3.1.13) lib/rack/head.rb:15:in 'Rack::Head#call'
+actionpack (8.0.2) lib/action_dispatch/http/permissions_policy.rb:38:in 'ActionDispatch::PermissionsPolicy::Middleware#call'
+actionpack (8.0.2) lib/action_dispatch/http/content_security_policy.rb:38:in 'ActionDispatch::ContentSecurityPolicy::Middleware#call'
+rack-session (2.1.0) lib/rack/session/abstract/id.rb:274:in 'Rack::Session::Abstract::Persisted#context'
+rack-session (2.1.0) lib/rack/session/abstract/id.rb:268:in 'Rack::Session::Abstract::Persisted#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/cookies.rb:706:in 'ActionDispatch::Cookies#call'
+activerecord (8.0.2) lib/active_record/migration.rb:671:in 'ActiveRecord::Migration::CheckPending#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/callbacks.rb:31:in 'block in ActionDispatch::Callbacks#call'
+activesupport (8.0.2) lib/active_support/callbacks.rb:100:in 'ActiveSupport::Callbacks#run_callbacks'
+actionpack (8.0.2) lib/action_dispatch/middleware/callbacks.rb:30:in 'ActionDispatch::Callbacks#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/executor.rb:16:in 'ActionDispatch::Executor#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in 'ActionDispatch::ActionableExceptions#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/debug_exceptions.rb:31:in 'ActionDispatch::DebugExceptions#call'
+web-console (4.2.1) lib/web_console/middleware.rb:132:in 'WebConsole::Middleware#call_app'
+web-console (4.2.1) lib/web_console/middleware.rb:28:in 'block in WebConsole::Middleware#call'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in 'Kernel#catch'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in 'WebConsole::Middleware#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/show_exceptions.rb:32:in 'ActionDispatch::ShowExceptions#call'
+railties (8.0.2) lib/rails/rack/logger.rb:41:in 'Rails::Rack::Logger#call_app'
+railties (8.0.2) lib/rails/rack/logger.rb:29:in 'Rails::Rack::Logger#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/remote_ip.rb:96:in 'ActionDispatch::RemoteIp#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/request_id.rb:34:in 'ActionDispatch::RequestId#call'
+rack (3.1.13) lib/rack/method_override.rb:28:in 'Rack::MethodOverride#call'
+rack (3.1.13) lib/rack/runtime.rb:24:in 'Rack::Runtime#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/server_timing.rb:61:in 'block in ActionDispatch::ServerTiming#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/server_timing.rb:26:in 'ActionDispatch::ServerTiming::Subscriber#collect_events'
+actionpack (8.0.2) lib/action_dispatch/middleware/server_timing.rb:60:in 'ActionDispatch::ServerTiming#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/executor.rb:16:in 'ActionDispatch::Executor#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/static.rb:27:in 'ActionDispatch::Static#call'
+rack (3.1.13) lib/rack/sendfile.rb:114:in 'Rack::Sendfile#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/host_authorization.rb:143:in 'ActionDispatch::HostAuthorization#call'
+railties (8.0.2) lib/rails/engine.rb:535:in 'Rails::Engine#call'
+puma (6.6.0) lib/puma/configuration.rb:279:in 'Puma::Configuration::ConfigMiddleware#call'
+puma (6.6.0) lib/puma/request.rb:99:in 'block in Puma::Request#handle_request'
+puma (6.6.0) lib/puma/thread_pool.rb:390:in 'Puma::ThreadPool#with_force_shutdown'
+puma (6.6.0) lib/puma/request.rb:98:in 'Puma::Request#handle_request'
+puma (6.6.0) lib/puma/server.rb:472:in 'Puma::Server#process_client'
+puma (6.6.0) lib/puma/server.rb:254:in 'block in Puma::Server#run'
+puma (6.6.0) lib/puma/thread_pool.rb:167:in 'block in Puma::ThreadPool#spawn_thread'
+Started GET "/api/v1/roles/" for ::1 at 2025-04-23 21:22:42 -0600
+  
+AbstractController::ActionNotFound (The action 'index' could not be found for Api::V1::RolesController):
+  
+actionpack (8.0.2) lib/abstract_controller/base.rb:158:in 'AbstractController::Base#process'
+actionview (8.0.2) lib/action_view/rendering.rb:40:in 'ActionView::Rendering#process'
+actionpack (8.0.2) lib/action_controller/metal.rb:252:in 'ActionController::Metal#dispatch'
+actionpack (8.0.2) lib/action_controller/metal.rb:335:in 'ActionController::Metal.dispatch'
+actionpack (8.0.2) lib/action_dispatch/routing/route_set.rb:67:in 'ActionDispatch::Routing::RouteSet::Dispatcher#dispatch'
+actionpack (8.0.2) lib/action_dispatch/routing/route_set.rb:50:in 'ActionDispatch::Routing::RouteSet::Dispatcher#serve'
+actionpack (8.0.2) lib/action_dispatch/journey/router.rb:53:in 'block in ActionDispatch::Journey::Router#serve'
+actionpack (8.0.2) lib/action_dispatch/journey/router.rb:133:in 'block in ActionDispatch::Journey::Router#find_routes'
+actionpack (8.0.2) lib/action_dispatch/journey/router.rb:126:in 'Array#each'
+actionpack (8.0.2) lib/action_dispatch/journey/router.rb:126:in 'ActionDispatch::Journey::Router#find_routes'
+actionpack (8.0.2) lib/action_dispatch/journey/router.rb:34:in 'ActionDispatch::Journey::Router#serve'
+actionpack (8.0.2) lib/action_dispatch/routing/route_set.rb:908:in 'ActionDispatch::Routing::RouteSet#call'
+railties (8.0.2) lib/rails/engine/lazy_route_set.rb:68:in 'Rails::Engine::LazyRouteSet#call'
+rack (3.1.13) lib/rack/tempfile_reaper.rb:20:in 'Rack::TempfileReaper#call'
+rack (3.1.13) lib/rack/etag.rb:29:in 'Rack::ETag#call'
+rack (3.1.13) lib/rack/conditional_get.rb:31:in 'Rack::ConditionalGet#call'
+rack (3.1.13) lib/rack/head.rb:15:in 'Rack::Head#call'
+actionpack (8.0.2) lib/action_dispatch/http/permissions_policy.rb:38:in 'ActionDispatch::PermissionsPolicy::Middleware#call'
+actionpack (8.0.2) lib/action_dispatch/http/content_security_policy.rb:38:in 'ActionDispatch::ContentSecurityPolicy::Middleware#call'
+rack-session (2.1.0) lib/rack/session/abstract/id.rb:274:in 'Rack::Session::Abstract::Persisted#context'
+rack-session (2.1.0) lib/rack/session/abstract/id.rb:268:in 'Rack::Session::Abstract::Persisted#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/cookies.rb:706:in 'ActionDispatch::Cookies#call'
+activerecord (8.0.2) lib/active_record/migration.rb:671:in 'ActiveRecord::Migration::CheckPending#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/callbacks.rb:31:in 'block in ActionDispatch::Callbacks#call'
+activesupport (8.0.2) lib/active_support/callbacks.rb:100:in 'ActiveSupport::Callbacks#run_callbacks'
+actionpack (8.0.2) lib/action_dispatch/middleware/callbacks.rb:30:in 'ActionDispatch::Callbacks#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/executor.rb:16:in 'ActionDispatch::Executor#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in 'ActionDispatch::ActionableExceptions#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/debug_exceptions.rb:31:in 'ActionDispatch::DebugExceptions#call'
+web-console (4.2.1) lib/web_console/middleware.rb:132:in 'WebConsole::Middleware#call_app'
+web-console (4.2.1) lib/web_console/middleware.rb:28:in 'block in WebConsole::Middleware#call'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in 'Kernel#catch'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in 'WebConsole::Middleware#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/show_exceptions.rb:32:in 'ActionDispatch::ShowExceptions#call'
+railties (8.0.2) lib/rails/rack/logger.rb:41:in 'Rails::Rack::Logger#call_app'
+railties (8.0.2) lib/rails/rack/logger.rb:29:in 'Rails::Rack::Logger#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/remote_ip.rb:96:in 'ActionDispatch::RemoteIp#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/request_id.rb:34:in 'ActionDispatch::RequestId#call'
+rack (3.1.13) lib/rack/method_override.rb:28:in 'Rack::MethodOverride#call'
+rack (3.1.13) lib/rack/runtime.rb:24:in 'Rack::Runtime#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/server_timing.rb:61:in 'block in ActionDispatch::ServerTiming#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/server_timing.rb:26:in 'ActionDispatch::ServerTiming::Subscriber#collect_events'
+actionpack (8.0.2) lib/action_dispatch/middleware/server_timing.rb:60:in 'ActionDispatch::ServerTiming#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/executor.rb:16:in 'ActionDispatch::Executor#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/static.rb:27:in 'ActionDispatch::Static#call'
+rack (3.1.13) lib/rack/sendfile.rb:114:in 'Rack::Sendfile#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/host_authorization.rb:143:in 'ActionDispatch::HostAuthorization#call'
+railties (8.0.2) lib/rails/engine.rb:535:in 'Rails::Engine#call'
+puma (6.6.0) lib/puma/configuration.rb:279:in 'Puma::Configuration::ConfigMiddleware#call'
+puma (6.6.0) lib/puma/request.rb:99:in 'block in Puma::Request#handle_request'
+puma (6.6.0) lib/puma/thread_pool.rb:390:in 'Puma::ThreadPool#with_force_shutdown'
+puma (6.6.0) lib/puma/request.rb:98:in 'Puma::Request#handle_request'
+puma (6.6.0) lib/puma/server.rb:472:in 'Puma::Server#process_client'
+puma (6.6.0) lib/puma/server.rb:254:in 'block in Puma::Server#run'
+puma (6.6.0) lib/puma/thread_pool.rb:167:in 'block in Puma::ThreadPool#spawn_thread'
+Started GET "/api/v1/roles/" for ::1 at 2025-04-23 21:23:18 -0600
+  [1m[36mActiveRecord::SchemaMigration Load (1.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='MarvelRivalsHeroApi'*/[0m
+Processing by Api::V1::RolesController#index as */*
+  [1m[36mRole Load (15.7ms)[0m  [1m[34mSELECT "roles".* FROM "roles" /*action='index',application='MarvelRivalsHeroApi',controller='roles'*/[0m
+  ↳ app/controllers/api/v1/roles_controller.rb:6:in 'Api::V1::RolesController#index'
+Completed 200 OK in 75ms (Views: 0.1ms | ActiveRecord: 30.9ms (1 query, 0 cached) | GC: 0.1ms)
+
+
+Started GET "/api/v1/heroes" for ::1 at 2025-04-23 21:25:55 -0600
+Processing by Api::V1::HeroesController#index as */*
+  Parameters: {"name" => "Add your name in the body", "hero" => {"name" => "Add your name in the body"}}
+  [1m[36mHero Load (1.1ms)[0m  [1m[34mSELECT "heros".* FROM "heros" /*action='index',application='MarvelRivalsHeroApi',controller='heroes'*/[0m
+  ↳ app/controllers/api/v1/heroes_controller.rb:7:in 'Enumerable#map'
+  [1m[36mRole Load (0.7ms)[0m  [1m[34mSELECT "roles".* FROM "roles" WHERE "roles"."id" IN (1, 2, 3) /*action='index',application='MarvelRivalsHeroApi',controller='heroes'*/[0m
+  ↳ app/controllers/api/v1/heroes_controller.rb:7:in 'Enumerable#map'
+Completed 200 OK in 51ms (Views: 0.6ms | ActiveRecord: 6.1ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
