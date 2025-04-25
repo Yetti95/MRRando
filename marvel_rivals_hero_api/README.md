@@ -1,19 +1,23 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
 Things you may want to cover:
 
 * Ruby version
+    - look at the .ruby-version
 
 * System dependencies
+    - None known, Was developed on M4 mac if need to know
 
 * Configuration
+    - None yet
 
 * Database creation
+    - rails db:create
+    - rails db:migrate
+    - rails db:seed
 
 * Database initialization
+    - (Mac) brew services start postgresql
 
 * How to run the test suite
 
@@ -21,4 +25,12 @@ Things you may want to cover:
 
 * Deployment instructions
 
-* ...
+
+
+Maybe Features:
+* Heroes:
+    * Factions
+    * Gender
+    * S/O
+* Roles:
+    * Sub Catagory of role

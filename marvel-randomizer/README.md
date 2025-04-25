@@ -68,3 +68,13 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+
+
+________________________________________
+Marvel Randomizer
+----------------------------------------
+V1:
+    This is more for personal use but if you find it fun or useful please feel free to use it.
+    The randomizer function is built into src/App.js
+    There is a "stop gap" placed in for the hero data. This will be removed in future versions but.
