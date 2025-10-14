@@ -23,11 +23,14 @@ roles = {
 # List of heroes with their roles
 heroes = [
   ["Adam Warlock", "Strategist"],
+  ["Angela", "Vanguard"],
   ["Black Panther", "Duelist"],
   ["Black Widow", "Duelist"],
+  ["Blade", "Dueliest"],
   ["Bruce Banner", "Vanguard"],
   ["Captian America", "Vanguard"],
-  ["CLoack & Dagger", "Strategist"],
+  ["Cloack & Dagger", "Strategist"],
+  ["Daredevil", "Duelist"],
   ["Doctor Stranger", "Vanguard"],
   ["Emma Frost", "Vanguard"],
   ["Groot", "Vanguard"],
