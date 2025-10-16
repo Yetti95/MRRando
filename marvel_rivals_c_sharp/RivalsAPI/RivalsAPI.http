@@ -1,0 +1,6 @@
+@RivalsAPI_HostAddress = http://localhost:5079
+
+GET {{RivalsAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
