@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("RivalsAPI")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b3653fa6644a0504891c2b5dadb440ab2afcb99a")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+22d9767e83eb190b8b0dd3c7c711aaa348494249")]
 [assembly: System.Reflection.AssemblyProductAttribute("RivalsAPI")]
 [assembly: System.Reflection.AssemblyTitleAttribute("RivalsAPI")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
